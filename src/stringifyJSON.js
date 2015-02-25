@@ -5,4 +5,25 @@
 
 var stringifyJSON = function(obj) {
   // your code goes here
+
+  console.log("obj: " + obj);
+  console.log("typeof obj: " + typeof obj);
+
+  if(typeof obj === 'number'){
+  	return "" + obj;
+  }
+  else if (obj === null){
+  	return "" + obj;
+  }
+  else if (typeof obj == 'boolean'){
+  	return "" + obj
+  }
+
+  return "" + obj;
+
+
+
+
+
+
 };
