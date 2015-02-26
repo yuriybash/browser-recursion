@@ -6,40 +6,56 @@
 var stringifyJSON = function(obj) {
     // your code goes here
 
-    // console.log("obj: " + obj);
-    // console.log("typeof obj: " + typeof obj);
-
     if (typeof obj === 'number') {
         return "" + obj;
     } else if (obj === null) {
         return "" + obj;
-    } else if (typeof obj == 'boolean') {
+    } else if (typeof obj === 'boolean') {
         return "" + obj
-    } else if (typeof obj == 'string') {
+    } else if (typeof obj === 'string') {
         return "\"" + obj + "\"";
+    } else if (typeof obj === 'undefined' || typeof obj === 'function') {
+        return;
     } else if (Array.isArray(obj)) {
-        var result ="";
+        var result = "";
 
         if (obj.length == 0) {
             return '[]';
         } else {
-        	
-        	for (var i = 0; i <= obj.length-1; i++) {
-        		
-        		result += stringifyJSON(obj[i]);
-        		if(i >= 0 && i < obj.length-1){
-        			console.log("TEST")
-        			result += ","
-        		}
-        	};
 
-        	console.log(result)
-        	return ("[" + result + "]")
+            for (var i = 0; i <= obj.length - 1; i++) {
+
+                result += stringifyJSON(obj[i]);
+                if (i >= 0 && i < obj.length - 1) {
+
+                    result += ","
+                }
+            };
+
+            return ("[" + result + "]")
 
 
         }
-    }
+    } else if (typeof obj === "object") {
+        var result = "";
+        if (Object.keys(obj).length == 0) {
+            return '{}'
+        } else {
 
+            for (var prop in obj) {
+                if (typeof stringifyJSON(obj[prop]) == "function" || typeof stringifyJSON(obj[prop]) == "undefined") {
+                    break;
+                }
+                result += "," + stringifyJSON(prop) + ":" + stringifyJSON(obj[prop])
+            }
+            result = result.substring(1)
+
+            return ("{" + result + "}")
+
+
+        }
+
+    }
 
 
 
