@@ -7,10 +7,7 @@
 var getElementsByClassName = function(className) {
 
 
-
     var result = [];
-
-
 
     for (var x = 0; x < document.body.classList.length; x++) {
 
@@ -74,7 +71,4 @@ var getElementsByClassName = function(className) {
 
 
     return result;
-    // your code here
 };
-
-//document.body, element.childNodes, and element.classList
